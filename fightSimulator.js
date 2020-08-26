@@ -47,5 +47,28 @@ class Magicien extends Personnage{
     }
 }
 
+class Guerrier extends Personnage{
+
+    constructor(pseudo) {
+        super(pseudo,"guerier",350,50);
+    }
+
+    attaquer(personnage) {
+        personnage -= this.attaque;
+        console.log(this.pseudo + " attaque " + personnage.pseudo + " avec son épée ("+ this.attaque + " dégâts)");
+        this.evoluer();
+        personnage.verifierSante();
+    }
+
+    coupSpecial(personnage) {
+        let hacheDeGuerre = this.attaque * 5
+        personnage -= hacheDeGuerre;
+        console.log(this.pseudo + " attaque  avec son coup spécial hache de guerre" + personnage.pseudo + " ("+ hacheDeGuerre + " dégâts)");
+        this.evoluer();
+        personnage.verifierSante();
+    }
+}
+
+
 
 
