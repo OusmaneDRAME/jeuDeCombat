@@ -1,4 +1,5 @@
 class Personnage {
+
     constructor(pseudo,classe,sante,attaque) {
         this.pseudo = pseudo;
         this.classe = classe;
@@ -21,6 +22,28 @@ class Personnage {
 
     get infotmation() {
         return this.pseudo + " (" + this + ") a "+ this.sante + "point de vie et au niveau " + this.niveau;
+    }
+}
+
+class Magicien extends Personnage{
+
+    constructor(pseudo) {
+        super(pseudo,"Magicien",170,90);
+    }
+
+    attaquer(personnage) {
+        personnage -= this.attaque;
+        console.log(this.pseudo + " attaque " + personnage.pseudo + " en lançant un sort ("+ this.attaque + " dégâts)");
+        this.evoluer();
+        personnage.verifierSante();
+    }
+
+    coupSpecial(personnage) {
+        let puissanceArcane = this.attaque * 5
+        personnage -= puissanceArcane;
+        console.log(this.pseudo + " attaque  avec son coup spécial puissance des arcanes" + personnage.pseudo + " ("+ puissanceArcane + " dégâts)");
+        this.evoluer();
+        personnage.verifierSante();
     }
 }
 
