@@ -8,21 +8,23 @@ class Personnage {
         this.niveau = 1;
     }
 
+    get informations() {
+        return this.pseudo + " (" + this.classe + ") a "+ this.sante + " points de vie et au niveau " + this.niveau;
+    }
+
     evoluer() {
         this.niveau++
-        console.log(this.pseudo + "passe au niveau "+this.niveau);
+        console.log(this.pseudo + " passe au niveau "+this.niveau);
     }
 
     verifierSante() {
         if(this.sante <= 0) {
             this.sante = 0;
-            console.log(this.pseudo + "a perdu");
+            console.log(this.pseudo + " a perdu");
         }
     }
 
-    get infotmation() {
-        return this.pseudo + " (" + this + ") a "+ this.sante + "point de vie et au niveau " + this.niveau;
-    }
+    
 }
 
 class Magicien extends Personnage{
@@ -32,7 +34,7 @@ class Magicien extends Personnage{
     }
 
     attaquer(personnage) {
-        personnage -= this.attaque;
+        personnage.sante -= this.attaque;
         console.log(this.pseudo + " attaque " + personnage.pseudo + " en lançant un sort ("+ this.attaque + " dégâts)");
         this.evoluer();
         personnage.verifierSante();
@@ -40,7 +42,7 @@ class Magicien extends Personnage{
 
     coupSpecial(personnage) {
         let puissanceArcane = this.attaque * 5
-        personnage -= puissanceArcane;
+        personnage.sante -= puissanceArcane;
         console.log(this.pseudo + " attaque  avec son coup spécial puissance des arcanes" + personnage.pseudo + " ("+ puissanceArcane + " dégâts)");
         this.evoluer();
         personnage.verifierSante();
@@ -54,7 +56,7 @@ class Guerrier extends Personnage{
     }
 
     attaquer(personnage) {
-        personnage -= this.attaque;
+        personnage.sante -= this.attaque;
         console.log(this.pseudo + " attaque " + personnage.pseudo + " avec son épée ("+ this.attaque + " dégâts)");
         this.evoluer();
         personnage.verifierSante();
@@ -62,7 +64,7 @@ class Guerrier extends Personnage{
 
     coupSpecial(personnage) {
         let hacheDeGuerre = this.attaque * 5
-        personnage -= hacheDeGuerre;
+        personnage.sante -= hacheDeGuerre;
         console.log(this.pseudo + " attaque  avec son coup spécial hache de guerre" + personnage.pseudo + " ("+ hacheDeGuerre + " dégâts)");
         this.evoluer();
         personnage.verifierSante();
